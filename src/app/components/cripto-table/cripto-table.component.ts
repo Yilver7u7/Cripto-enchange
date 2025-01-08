@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Cripto } from '../../interface/Cripto';
 import { CriptoService } from '../../services/cripto.service';
 import { CommonModule } from '@angular/common';
@@ -16,10 +16,10 @@ export class CriptoTableComponent {
 
   constructor(private criptoService:CriptoService) { }
 
-  ngOnInit(): void {
-    this.criptoService.getCriptos().subscribe((data) => {
-      this.criptos = data;
-    })
-  }
+  // ngOnInit(): void {
+  //   this.criptoService.getCriptos().subscribe((data) => {
+  //     this.criptos = data;
+  //   })
+  // }
 
 }

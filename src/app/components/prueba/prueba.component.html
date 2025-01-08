@@ -1,0 +1,55 @@
+<div class="container mx-auto px-4">
+  <div class="w-full">
+    <div class="w-full">
+      <h1 class="text-3xl font-bold my-6">CoinMarket</h1>
+      <input
+        type="text"
+        placeholder="Busca tu moneda pue $"
+        class="w-full bg-gray-800 text-white border-none rounded-lg py-2 px-4 my-4 text-center focus:outline-none focus:ring-2 focus:ring-blue-500"
+        autofocus
+        (keyup)="searchCoin()"
+        [(ngModel)] ="searchText"
+      />
+
+      <!-- TABLITA -->
+      <div class="overflow-x-auto rounded-md">
+        <table class="w-full bg-gray-900 text-white">
+          <thead class="bg-gray-800">
+            <tr>
+              <td *ngFor="let title of titles" class="px-6 py-3">
+                {{ title }}
+              </td>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let coin of Coins; let i = index"
+                class="border-b border-gray-800 hover:bg-gray-800">
+              <td class="px-6 py-4">{{ i + 1 }}</td>
+              <td class="px-6 py-4 flex items-center">
+                <img
+                  [src]="coin.image"
+                  alt="{{ coin.name }}"
+                  class="w-8 h-8 mr-4"
+                />
+                <span>{{ coin.name }}</span>
+                <span class="ml-3 text-gray-400 uppercase">{{ coin.symbol }}</span>
+              </td>
+              <td class="px-6 py-4">{{ coin.current_price | currency }}</td>
+              <td
+                [ngClass]="
+                  coin.price_change_percentage_24h > 0
+                   ? 'text-green-500'
+                   : 'text-red-500'
+                "
+                class="px-6 py-4"
+              >
+                {{ coin.price_change_percentage_24h }}
+              </td>
+              <td class="px-6 py-4">{{ coin.total_volume.toLocaleString() }}</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>
