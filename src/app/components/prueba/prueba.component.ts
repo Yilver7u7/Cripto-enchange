@@ -25,17 +25,22 @@ export class PruebaComponent implements OnInit{
    '24 volume',]
 
   Coins: Coin[] =[];
+  filteredCoins: Coin[] = [];
 
   //Al iniciar hace una request
   ngOnInit(): void {
     this.http.get<Coin[]>('https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&order=market_cap_desc&per_page=100&page=1&sparkline=false').subscribe(
-      (data) => {this.Coins = data;},
+      (data) => {
+        this.Coins = data;
+        this.filteredCoins = data;
+      },
       (err) => {console.log(err);}
     )
   }
 
   searchCoin(){
-    console.log('Buscando')
+    this.filteredCoins = this.Coins.filter(coin => coin.name.toLocaleLowerCase().includes(this.searchText.toLocaleLowerCase())) ||
+    this.Coins.filter(coin => coin.name.toLocaleLowerCase().includes(this.searchText.toLocaleLowerCase()));
   }
 
 }

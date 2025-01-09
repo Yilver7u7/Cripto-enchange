@@ -7,7 +7,7 @@
         placeholder="Busca tu moneda pue $"
         class="w-full bg-gray-800 text-white border-none rounded-lg py-2 px-4 my-4 text-center focus:outline-none focus:ring-2 focus:ring-blue-500"
         autofocus
-        (keyup)="searchCoin()"
+        (keyup.enter)="searchCoin()"
         [(ngModel)] ="searchText"
       />
 
@@ -22,7 +22,7 @@
             </tr>
           </thead>
           <tbody>
-            <tr *ngFor="let coin of Coins; let i = index"
+            <tr *ngFor="let coin of filteredCoins; let i = index"
                 class="border-b border-gray-800 hover:bg-gray-800">
               <td class="px-6 py-4">{{ i + 1 }}</td>
               <td class="px-6 py-4 flex items-center">
